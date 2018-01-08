@@ -7,4 +7,17 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
+
+
+    <string name="email_address">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="submit">Submit</string>
+    <string name="error_empty">Please dont make it empty!</string>
+    <string name="error_firstname">The first character cannot be digit!</string>
+    <string name="error_email">Invalid email format!</string>
+    <string name="error_password">The password must more than 6 characters and no more than 12 characters!</string>
+    <string name="error_invalidPassword">The password is not same!</string>
 </resources>

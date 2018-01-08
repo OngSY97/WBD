@@ -1,7 +1,7 @@
 package my.edu.tarc.wbd;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,21 +68,9 @@ public class Registration extends AppCompatActivity {
             editTextConfirmedPassword.setError(getString(R.string.error_invalidPassword));
             return;
         }
-        myDb.getAllData();
-    String name = firstName.toString().concat(" ").concat(lastName.toString());
+        String name = firstName.toString().concat(" ").concat(lastName.toString());
 
-        buttonSubmit.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                      //  boolean isInserted = myDb.InsertData(emailAddress, name, password );
-                       // if(isInserted == true)
-                        //    Toast.makeText(Registration.this,"Data Inserted", Toast.LENGTH_LONG).show();
-                        //else
-                         //   Toast.makeText(Registration.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
+
 
     }
 
