@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+        android:id="@+id/nav_AddDevice"
+        android:icon="@drawable/ic_menu_add"
+        android:title="Add Device" />
+        <item
+            android:id="@+id/nav_Logout"
+            android:icon="@drawable/ic_menu_warning"
+            android:title="Logout" />
+
+    </group>
+
+    <item android:title="Device">
+        <menu>
+            <item
+                android:id="@+id/nav_device"
+                android:icon="@drawable/ic_menu_devices"
+                android:title="device1" />
+
+        </menu>
+    </item>
+
+</menu>
