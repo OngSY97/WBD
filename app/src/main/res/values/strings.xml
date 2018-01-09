@@ -20,4 +20,6 @@
     <string name="error_email">Invalid email format!</string>
     <string name="error_password">The password must more than 6 characters and no more than 12 characters!</string>
     <string name="error_invalidPassword">The password is not same!</string>
+
+    <string name="url_insert_data">http://wbdtracker.000webhostapp.com/insertData.php</string>
 </resources>

@@ -53,10 +53,8 @@
 
     <TextView
         android:id="@+id/textViewFirstName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="284dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:text="FirstName"
         android:textSize="18sp"
@@ -66,10 +64,8 @@
 
     <TextView
         android:id="@+id/textViewLastName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="285dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="LastName"
         android:textSize="18sp"
@@ -92,10 +88,8 @@
 
     <TextView
         android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="294dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="EmailAddress"
         android:textSize="18sp"
@@ -121,10 +115,8 @@
 
     <TextView
         android:id="@+id/textViewPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="302dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Password"
         android:textSize="18sp"
@@ -135,10 +127,8 @@
 
     <TextView
         android:id="@+id/textViewConfirmedPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="284dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="ConfirmedPassword"
         android:textSize="18sp"
