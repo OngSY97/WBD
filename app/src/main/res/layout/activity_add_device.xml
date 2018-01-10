@@ -7,27 +7,29 @@
     tools:context="my.edu.tarc.wbd.AddDevice">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Skip if Got Device"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Add Device"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSkip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

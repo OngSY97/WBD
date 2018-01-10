@@ -21,5 +21,8 @@
     <string name="error_password">The password must more than 6 characters and no more than 12 characters!</string>
     <string name="error_invalidPassword">The password is not same!</string>
 
-    <string name="url_insert_data">http://wbdtracker.000webhostapp.com/insertData.php</string>
+    <string name="url_login">http://wbdtracker.000webhostapp.com/login.php</string>
+    <string name="url_selectAccount">http://wbdtracker.000webhostapp.com/selectAccount.php</string>
+    <string name="url_getAllAccountDetail">http://wbdtracker.000webhostapp.com/getAllAccountDetails.php</string>
+    <string name="url_insert_personal_details">http://wbdtracker.000webhostapp.com/insertPersonalDetails.php</string>
 </resources>

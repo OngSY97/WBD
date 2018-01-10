@@ -13,11 +13,11 @@ import java.util.List;
  * Created by S3113 on 9/1/2018.
  */
 
-public class DataSource {
+public class PersonalDataSource {
     private SQLiteDatabase myDatabase;
-    private DatabaseHelper myDbHelper;
-    public DataSource(Context context) {
-        myDbHelper = new DatabaseHelper(context);
+    private PersonalDatabaseHelper myDbHelper;
+    public PersonalDataSource(Context context) {
+        myDbHelper = new PersonalDatabaseHelper(context);
     }
 
     public void open() throws SQLException {
@@ -27,13 +27,14 @@ public class DataSource {
         myDbHelper.close();
     }
 
-    public boolean insertData(personalAccount details){
-        ContentValues values = new ContentValues();
-        values.put( DatabaseContract.COLUMN_EMAIL, details.getEmail());
-        values.put( DatabaseContract.COLUMN_NAME, details.getName());
-        values.put( DatabaseContract.COLUMN_PASSWORD, details.getPassword());
+    public boolean insertData(Account details){
         myDatabase = myDbHelper.getWritableDatabase();
-       long result= myDatabase.insert(DatabaseContract.TABLE_NAME, null, values);
+        ContentValues values = new ContentValues();
+        values.put( PersonalDatabaseContract.COLUMN_EMAIL, details.getEmail());
+        values.put( PersonalDatabaseContract.COLUMN_NAME, details.getName());
+        values.put( PersonalDatabaseContract.COLUMN_PASSWORD, details.getPassword());
+
+       long result= myDatabase.insert(PersonalDatabaseContract.TABLE_NAME, null, values);
         myDatabase.close();
         if(result ==-1)
             return false;
@@ -43,15 +44,15 @@ public class DataSource {
 
     }
 
-    public List<personalAccount> getAllDetails(){
-        List<personalAccount> records = new ArrayList<>();
+    public List<Account> getAllDetails(){
+        List<Account> records = new ArrayList<>();
 
         myDatabase = myDbHelper.getWritableDatabase();
-        Cursor cursor = myDatabase.rawQuery("SELECT * FROM " + DatabaseContract.TABLE_NAME, null);
+        Cursor cursor = myDatabase.rawQuery("SELECT * FROM " + PersonalDatabaseContract.TABLE_NAME, null);
 
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
-            personalAccount record= new personalAccount();
+            Account record= new Account();
             record.setEmail(cursor.getString(0));
             record.setName(cursor.getString(1));
             record.setPassword(cursor.getString(2));

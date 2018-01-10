@@ -10,11 +10,11 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by S3113 on 9/1/2018.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper{
+public class PersonalDatabaseHelper extends SQLiteOpenHelper{
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "personalAccount.db";
+    public static final String DATABASE_NAME = "Account.db";
 
-    public DatabaseHelper(Context context) {
+    public PersonalDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -28,7 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS personalAccount");
-
         onCreate(db);
     }
 
