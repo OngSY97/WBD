@@ -15,31 +15,36 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
-    public static final String LOGIN_URL="http://wbdtracker.000webhostapp.com/getAllAccountDetails.php";
-    public static final String KEY_EMAIL="email";
-    public static final String KEY_PASSWORD="password";
-    public static final String LOGIN_SUCCESS="success";
-    public static final String SHARED_PREF_NAME="tech";
-    public static final String EMAIL_SHARED_PREF="email";
-    public static final String LOGGEDIN_SHARED_PREF="loggedin";
+    public static final String LOGIN_URL = "http://wbdtracker.000webhostapp.com/login.php";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PASSWORD = "password";
+    public static final String LOGIN_SUCCESS = "success";
+    public static final String SHARED_PREF_NAME = "tech";
+    public static final String EMAIL_SHARED_PREF = "email";
+    public static final String LOGGEDIN_SHARED_PREF = "loggedin";
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button BtnLogin;
-    private boolean loggedIn=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        editTextEmail=(EditText)findViewById(R.id.editTextEmail);
-        editTextPassword=(EditText)findViewById(R.id.editTextPassword);
-        BtnLogin=(Button)findViewById(R.id.buttonLogin);
+        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        BtnLogin = (Button) findViewById(R.id.buttonLogin);
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,50 +58,59 @@ public class Login extends AppCompatActivity {
         final String password = editTextPassword.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if(response.trim().equalsIgnoreCase(LOGIN_SUCCESS)){
+            @Override
+            public void onResponse(String response) {
+                JSONObject jsonObject;
+                try {
+                    jsonObject = new JSONObject(response);
 
-                            SharedPreferences sharedPreferences = Login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                    int success = jsonObject.getInt("success");
+                    String message = jsonObject.getString("message");
 
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                    if (success == 1) {
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                        SharedPreferences sharedPreferences = Login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-                            editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(EMAIL_SHARED_PREF, email);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                            editor.commit();
+                        editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
+                        editor.putString(EMAIL_SHARED_PREF, email);
+                        editor.commit();
 
-                            Intent intent = new Intent(Login.this, AddDevice.class);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(Login.this, "Invalid username or password", Toast.LENGTH_LONG).show();
-
-                        }
+                        Intent intent = new Intent(Login.this, AddDevice.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                     }
-                },
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Error. " + error.toString(), Toast.LENGTH_LONG).show();
                     }
-                }){
+                }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> prams = new HashMap<>();
-                prams.put(KEY_EMAIL, email);
-                prams.put(KEY_PASSWORD, password);
-
-                return prams;
+                Map<String, String> params = new HashMap<>();
+                params.put(KEY_EMAIL, email);
+                params.put(KEY_PASSWORD, password);
+                return params;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        loggedIn = sharedPreferences.getBoolean(LOGGEDIN_SHARED_PREF, false);
-        if(loggedIn){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        Boolean loggedIn = sharedPreferences.getBoolean(LOGGEDIN_SHARED_PREF, false);
+        if (loggedIn) {
             Intent intent = new Intent(Login.this, AddDevice.class);
             startActivity(intent);
         }
